@@ -19,8 +19,10 @@ lightbox2 <- function(images, titles = images, thumbnailWidth = "100px", thumbna
   # if images is a named vector use those names for titles
   if (all(titles == images) && !is.null(names(images))) titles <- names(images)
 
+  image_uris <- vapply(images, knitr::image_uri, character(1))
+
   x = list(
-    images = unname(images), # cannot give named vectors to jsonlite
+    images = unname(image_uris), # cannot give named vectors to jsonlite
     titles = titles,
     thumbnailWidth = thumbnailWidth,
     thumbnailHeight = thumbnailHeight
