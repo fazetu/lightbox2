@@ -4,6 +4,8 @@
 #' image files.
 #' @param images Vector of paths to image files. Full file paths are
 #'   probably recommended.
+#' @param titles Vector of title/alt names to use for the <img> tag. Should be
+#'   the same length as \code{images}.
 #' @param thumbnailWidth String denoting the width of the images when they are
 #'   displayed as thumbnails. Usually in the format "Npx".
 #' @param thumbnailHeight String denoting the height of the images when they are
@@ -11,10 +13,15 @@
 #' @inheritParams htmlwidgets::createWidget
 #' @import htmlwidgets
 #' @export
-lightbox2 <- function(images, thumbnailWidth = "100px", thumbnailHeight = "100px",
+lightbox2 <- function(images, titles = images, thumbnailWidth = "100px", thumbnailHeight = "100px",
                       width = NULL, height = NULL, elementId = NULL) {
+  if(length(images) != length(titles)) stop("`images` and `titles` must be the same length.")
+  # if images is a named vector use those names for titles
+  if (all(titles == images) && !is.null(names(images))) titles <- names(images)
+
   x = list(
-    images = images,
+    images = unname(images), # cannot give named vectors to jsonlite
+    titles = titles,
     thumbnailWidth = thumbnailWidth,
     thumbnailHeight = thumbnailHeight
   )

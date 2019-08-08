@@ -4,12 +4,16 @@
 \alias{lightbox2}
 \title{Create a lightbox2 gallery of image files}
 \usage{
-lightbox2(images, thumbnailWidth = "100px", thumbnailHeight = "100px",
-  width = NULL, height = NULL, elementId = NULL)
+lightbox2(images, titles = images, thumbnailWidth = "100px",
+  thumbnailHeight = "100px", width = NULL, height = NULL,
+  elementId = NULL)
 }
 \arguments{
 \item{images}{Vector of paths to image files. Full file paths are
 probably recommended.}
+
+\item{titles}{Vector of title/alt names to use for the <img> tag. Should be
+the same length as \code{images}.}
 
 \item{thumbnailWidth}{String denoting the width of the images when they are
 displayed as thumbnails. Usually in the format "Npx".}

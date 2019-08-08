@@ -9,6 +9,7 @@ HTMLWidgets.widget({
     return {
       renderValue: function(x) {
         var images = x.images; // these are full paths to images
+        var titles = x.titles;
         var tnw = x.thumbnailWidth;
         var tnh = x.thumbnailHeight;
 
@@ -19,7 +20,8 @@ HTMLWidgets.widget({
 
         for (var i = 0; i < images.length; i++) {
           var image = images[i];
-          $("#" + el.getAttribute("id")).append("<a href='"+image+"' data-lightbox='lb-gallery'><img src='"+image+"' width='"+tnw+"' height='"+tnh+"'></a>");
+          var title = titles[i];
+          $("#" + el.getAttribute("id")).append("<a href='"+image+"' data-lightbox='lb-gallery'><img src='"+image+"' alt='"+title+"' title='"+title+"' width='"+tnw+"' height='"+tnh+"'></a>");
         }
 
         el.style.width = "100%"; // add 100% width for Rmarkdown html output
