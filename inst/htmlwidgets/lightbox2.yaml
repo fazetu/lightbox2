@@ -1,0 +1,10 @@
+dependencies:
+- name: jquery
+  version: 0 # don't know what needs to go here
+  src: htmlwidgets/lib/jquery
+  script: dist/jquery.min.js
+- name: lightbox2
+  version: 0 # don't know what needs to go here
+  src: htmlwidgets/lib/lightbox2
+  script: dist/js/lightbox.min.js
+  style: dist/css/lightbox.min.css
