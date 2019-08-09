@@ -2,24 +2,44 @@
 % Please edit documentation in R/lightbox2.R
 \name{lightbox2}
 \alias{lightbox2}
-\title{Create a lightbox2 gallery of image files}
+\title{htmlwidget to create a lightbox2 gallery of image files}
 \usage{
-lightbox2(images, titles = images, thumbnailWidth = "100px",
-  thumbnailHeight = "100px", width = NULL, height = NULL,
-  elementId = NULL)
+lightbox2(images, thumbnailImages = NULL, gallery = "lb-gallery",
+  titles = NULL, thumbnailAlign = c("center", "left", "right",
+  "justify"), thumbnailWidth = "auto", thumbnailHeight = "100px",
+  maxHeight = "400px", margin = "auto", width = "100\%",
+  height = "auto", elementId = NULL)
 }
 \arguments{
-\item{images}{Vector of paths to image files. Full file paths are
-probably recommended.}
+\item{images, thumbnailImages}{Vector of paths to image files. Full file paths
+are recommended. The default is to have the main pictures in \code{images}
+be the thumbnail images as well and then control their sizing with
+\code{thumbnailWidth} and \code{thumbnailHeight}.}
 
-\item{titles}{Vector of title/alt names to use for the <img> tag. Should be
-the same length as \code{images}.}
+\item{gallery}{Name of the lightbox gallery. If there are multiple lightbox2
+galleries on a single page it might help to name them differently.}
 
-\item{thumbnailWidth}{String denoting the width of the images when they are
-displayed as thumbnails. Usually in the format "Npx".}
+\item{titles}{Optional vector of title/alt names to use for the \code{<img>}
+tag. Should be the same length as \code{images}. If none are provided the
+file names from \code{thumbnailImages} then \code{images} is used,
+whichever is available in that order.}
 
-\item{thumbnailHeight}{String denoting the height of the images when they are
-displayed as thumbnails. Usually in the format "Npx".}
+\item{thumbnailAlign}{String denoting how to arrange the thunbnail images in
+the \code{<div>} tag. Gets passed to the \code{<div>}'s text-align style.
+Options are "center", "left", "right", "justify".}
+
+\item{thumbnailWidth}{String denoting the width of the images in css units
+when they are displayed as thumbnails.}
+
+\item{thumbnailHeight}{String denoting the height of the images in css units
+when they are displayed as thumbnails.}
+
+\item{maxHeight}{The max height of the overall widget (the gallery of
+thumbnail images) in css units. Any overflow will cause a scroll bar to
+appear.}
+
+\item{margin}{The margin style used for the overall widget (the gallery of
+thumbnail images). Default is "auto" to center the gallery on the page.}
 
 \item{width}{Fixed width for widget (in css units). The default is
 \code{NULL}, which results in intelligent automatic sizing based on the
@@ -36,4 +56,9 @@ needs to explicitly discover and interact with a specific widget instance.}
 \description{
 Use \href{https://lokeshdhakar.com/projects/lightbox2/}{lightbox2} to display
 image files.
+}
+\examples{
+library(lightbox2)
+imgs <- example_images() # get some stock image paths
+lightbox2(imgs)
 }

@@ -8,28 +8,41 @@ HTMLWidgets.widget({
 
     return {
       renderValue: function(x) {
-        var images = x.images; // these are full paths to images
+        // decompose x
+        var images = x.images;
+        var n = images.length;
+        var tnImages = x.thumbnailImages;
+        var gallery = x.gallery;
         var titles = x.titles;
+        var tna = x.thumbnailAlign;
         var tnw = x.thumbnailWidth;
         var tnh = x.thumbnailHeight;
+        var mh = x.maxHeight;
+        var margin = x.margin;
 
-        // create tags and add to the document in order.
-        // <a href="image" data-lightbox="gallery">
-        //   <img src="image" width="thumbnailWidth" height="thumbnailHeight">
-        // </a>
-
-        for (var i = 0; i < images.length; i++) {
+        // create tags and add to the document in order
+        for (var i = 0; i < n; i++) {
           var image = images[i];
+          var tnImage = tnImages[i];
           var title = titles[i];
-          $("#" + el.getAttribute("id")).append("<a href='"+image+"' data-lightbox='lb-gallery'><img src='"+image+"' alt='"+title+"' title='"+title+"' width='"+tnw+"' height='"+tnh+"'></a>");
+
+          // added text-decoration:none to anchors since a small blue line was appearing on hover
+          // images' width and height need to be in style attribute - R markdown was overwriting it when they were attributes
+          $(`#${el.getAttribute("id")}`).append(`
+            <a href="${image}" data-lightbox="${gallery}" style="text-decoration:none;">
+              <img src="${tnImage}" title="${title}" alt="${title}" style="width:${tnw};height:${tnh};">
+            </a>
+          `);
         }
 
-        el.style.width = "100%"; // add 100% width for Rmarkdown html output
+        el.style.textAlign = tna;
+        el.style.maxHeight = mh;
+        el.style.overflowY = "auto";
+        el.style.margin = margin;
       },
       resize: function(width, height) {
         // TODO: code to re-render the widget with a new size
-        // when does this happen?
-        console.log("in resize");
+        //console.log("in resize"); // when does this happen?
       }
     };
   }

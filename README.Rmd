@@ -1,40 +1,50 @@
+---
+output: github_document
+---
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
+)
+library(webshot)
+```
+
 # lightbox2
 
-Use the [lightbox2 javascript
-library](https://lokeshdhakar.com/projects/lightbox2/) to render image
-files in an `htmlwidget`.
+Use the [lightbox2 javascript library](https://lokeshdhakar.com/projects/lightbox2/) to render image files in an `htmlwidget`.
 
 ## Installation
 
-``` r
+```r
 devtools::install_github("fazetu/lightbox2")
 ```
 
 ## Examples
 
-``` r
+```{r}
 library(lightbox2)
 ```
 
 Get file paths to some image files.
 
-``` r
+```{r}
 images <- example_images()
 ```
 
 Note there is also `example_lightbox2()`.
 
-These examples are **not** interactive, but demonstrate the different
-styling options available.
+These examples are **not** interactive, but demonstrate the different styling options available.
 
 This R code chunk in R Markdown does **not** have `results='asis'`.
 
 <!-- Webshot not working so just take manual screen captures for now -->
 
-``` r
+```{r, eval=FALSE}
 lightbox2(images)
 ```
 
@@ -42,26 +52,23 @@ lightbox2(images)
 
 Change thumbnail size.
 
-``` r
+```{r, eval=FALSE}
 lightbox2(images, thumbnailHeight = "50px", thumbnailWidth = "auto")
 ```
 
 ![5-1](man/figures/README-5-1.png)
 
-Change thumbnail
-alignment.
+Change thumbnail alignment.
 
-``` r
+```{r, eval=FALSE}
 lightbox2(images, thumbnailHeight = "50px", thumbnailWidth = "auto", thumbnailAlign = "left")
 ```
 
 ![6-1](man/figures/README-6-1.png)
 
-Make it so we get a scroll bar by adjusting thumbnail height and max
-height of the
-widget.
+Make it so we get a scroll bar by adjusting thumbnail height and max height of the widget.
 
-``` r
+```{r, eval=FALSE}
 lightbox2(images, thumbnailHeight = "200px", thumbnailWidth = "auto", maxHeight = "200px")
 ```
 
@@ -69,15 +76,15 @@ lightbox2(images, thumbnailHeight = "200px", thumbnailWidth = "auto", maxHeight 
 
 Adjust the size of the overall widget.
 
-``` r
+```{r, eval=FALSE}
 lightbox2(images, width = "50%")
 ```
 
 ![8-1](man/figures/README-8-1.png)
 
-Don’t center within the page.
+Don't center within the page.
 
-``` r
+```{r, eval=FALSE}
 lightbox2(images, width = "50%", margin = "none")
 ```
 
