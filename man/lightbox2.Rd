@@ -39,8 +39,8 @@ when they are displayed as thumbnails. The default is \code{"100px"}.}
 \item{maxHeight}{The max height of the overall widget (the gallery of
 thumbnail images) in css units. Any overflow will cause a scroll bar to
 appear. The default is \code{"412px"} which allows for 4 rows of images
-when \code{thumbnailHeight = "100px"}. 412 and not 400 because each image
-gets a bottom margin of 3px.}
+when \code{thumbnailHeight = "100px"}. 412px and not 400px because each image
+gets a bottom (and right) margin of 3px.}
 
 \item{margin}{The margin style used for the overall widget (the gallery of
 thumbnail images). Default is "auto" to center the gallery on the page.}
