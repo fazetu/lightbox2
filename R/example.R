@@ -2,7 +2,9 @@
 #'
 #' @export
 example_images <- function() {
-  normalizePath(dir(system.file("stock-images", package = "lightbox2"), full.names = TRUE))
+  imgs <- normalizePath(dir(system.file("stock-images", package = "lightbox2"), full.names = TRUE))
+  names(imgs) <- c("Giraffes", "Leopard", "Tigers", "Flamingos", "Elephants")
+  imgs
 }
 
 #' Run an example \code{\link{lightbox2}} widget
@@ -17,6 +19,5 @@ example_lightbox2 <- function(...) {
   imgs <- normalizePath(dir(system.file("stock-images", package = "lightbox2"), full.names = TRUE))
   titles <- c("Three giraffes", "Leopard close up", "Tiger and cub",
               "Flamingos with black background", "Elephant and calf")
-
   lightbox2(images = imgs, thumbnailImages = imgs, titles = titles, ...)
 }

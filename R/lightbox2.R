@@ -17,14 +17,20 @@
 #'   the \code{<div>} tag. Gets passed to the \code{<div>}'s text-align style.
 #'   Options are "center", "left", "right", "justify".
 #' @param thumbnailWidth String denoting the width of the images in css units
-#'   when they are displayed as thumbnails.
+#'   when they are displayed as thumbnails. The default is \code{"auto"} so the
+#'   images are not stretched while their size is controlled by
+#'   \code{thumbnailHeight}.
 #' @param thumbnailHeight String denoting the height of the images in css units
-#'   when they are displayed as thumbnails.
+#'   when they are displayed as thumbnails. The default is \code{"100px"}.
 #' @param maxHeight The max height of the overall widget (the gallery of
 #'   thumbnail images) in css units. Any overflow will cause a scroll bar to
-#'   appear.
+#'   appear. The default is \code{"412px"} which allows for 4 rows of images
+#'   when \code{thumbnailHeight = "100px"}. 412px and not 400px because each image
+#'   gets a bottom (and right) margin of 3px.
 #' @param margin The margin style used for the overall widget (the gallery of
 #'   thumbnail images). Default is "auto" to center the gallery on the page.
+#' @param searchable Boolean if a search box should be added to filter the
+#'   images based on \code{titles}.
 #' @inheritParams htmlwidgets::createWidget
 #' @examples
 #' library(lightbox2)
@@ -34,8 +40,9 @@
 #' @export
 lightbox2 <- function(images, thumbnailImages = NULL, gallery = "lb-gallery", titles = NULL,
                       thumbnailAlign = c("center", "left", "right", "justify"),
-                      thumbnailWidth = "auto", thumbnailHeight = "100px", maxHeight = "400px",
-                      margin = "auto", width = "100%", height = "auto", elementId = NULL) {
+                      thumbnailWidth = "auto", thumbnailHeight = "100px",
+                      maxHeight = "412px", margin = "auto", searchable = FALSE,
+                      width = "100%", height = "auto", elementId = NULL) {
   thumbnailAlign <- match.arg(thumbnailAlign)
   user_titles <- !is.null(titles)
   user_thumbnails <- !is.null(thumbnailImages)
@@ -68,7 +75,8 @@ lightbox2 <- function(images, thumbnailImages = NULL, gallery = "lb-gallery", ti
     thumbnailWidth = thumbnailWidth,
     thumbnailHeight = thumbnailHeight,
     maxHeight = maxHeight,
-    margin = margin
+    margin = margin,
+    searchable = searchable
   )
 
   htmlwidgets::createWidget(

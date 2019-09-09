@@ -7,8 +7,8 @@
 lightbox2(images, thumbnailImages = NULL, gallery = "lb-gallery",
   titles = NULL, thumbnailAlign = c("center", "left", "right",
   "justify"), thumbnailWidth = "auto", thumbnailHeight = "100px",
-  maxHeight = "400px", margin = "auto", width = "100\%",
-  height = "auto", elementId = NULL)
+  maxHeight = "412px", margin = "auto", searchable = FALSE,
+  width = "100\%", height = "auto", elementId = NULL)
 }
 \arguments{
 \item{images, thumbnailImages}{Vector of paths to image files. Full file paths
@@ -29,17 +29,24 @@ the \code{<div>} tag. Gets passed to the \code{<div>}'s text-align style.
 Options are "center", "left", "right", "justify".}
 
 \item{thumbnailWidth}{String denoting the width of the images in css units
-when they are displayed as thumbnails.}
+when they are displayed as thumbnails. The default is \code{"auto"} so the
+images are not stretched while their size is controlled by
+\code{thumbnailHeight}.}
 
 \item{thumbnailHeight}{String denoting the height of the images in css units
-when they are displayed as thumbnails.}
+when they are displayed as thumbnails. The default is \code{"100px"}.}
 
 \item{maxHeight}{The max height of the overall widget (the gallery of
 thumbnail images) in css units. Any overflow will cause a scroll bar to
-appear.}
+appear. The default is \code{"412px"} which allows for 4 rows of images
+when \code{thumbnailHeight = "100px"}. 412 and not 400 because each image
+gets a bottom margin of 3px.}
 
 \item{margin}{The margin style used for the overall widget (the gallery of
 thumbnail images). Default is "auto" to center the gallery on the page.}
+
+\item{searchable}{Boolean if a search box should be added to filter the
+images based on \code{titles}.}
 
 \item{width}{Fixed width for widget (in css units). The default is
 \code{NULL}, which results in intelligent automatic sizing based on the
