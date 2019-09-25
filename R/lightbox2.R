@@ -66,7 +66,7 @@ lightbox2 <- function(images, thumbnailImages = NULL, gallery = "lb-gallery", ti
     thumbnail_uris <- image_uris
   }
 
-  x = list(
+  x <- list(
     images = unname(image_uris), # cannot give named vectors to jsonlite
     thumbnailImages = unname(thumbnail_uris),
     gallery = gallery,

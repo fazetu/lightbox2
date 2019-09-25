@@ -72,6 +72,18 @@ HTMLWidgets.widget({
         var thisId = el.getAttribute("id");
         var gallery = x.gallery;
 
+        if (!Array.isArray(x.images)) { // account for only 1 image. if only 1 image x.images is not an array!
+          x.images = [x.images];
+        }
+
+        if (!Array.isArray(x.titles)) { // account for only 1 image. if only 1 image x.images is not an array!
+          x.titles = [x.titles];
+        }
+
+        if (!Array.isArray(x.thumbnailImages)) { // account for only 1 image. if only 1 image x.images is not an array!
+          x.thumbnailImages = [x.thumbnailImages];
+        }
+
         // create a/img tags and add to the document in order
         var lbId = `lightbox-thumbnail-container-${gallery}`;
         $(`#${thisId}`).append(lightboxImgFactory(
